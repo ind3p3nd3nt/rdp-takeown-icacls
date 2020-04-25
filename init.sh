@@ -36,10 +36,28 @@ fi
 if [[ "$line" == *"/"* ]]; then
 line="$line\\*"
 fi
+# Setting up strings concatenations
 dirstring="$quote$directory$line$quote"
-targetdenyobjectstring="$quote$denyuser$d2$lpar'OI'$rpar$lpar'CI'$rpar$lpar'F'$rpar$quote"
-targetgrantobjectstring="$quote$denyuser$d2$lpar'OI'$rpar$lpar'CI'$rpar$lpar'F'$rpar$quote"
-denyuserstring="$quote$denyuser$d2$lpar'RA,WA,X,F'$rpar$quote"
+targetdenyobjectstring="$quote$denyuser$d2$lpar"
+targetdenyobjectstring+="OI"
+targetdenyobjectstring+="$rpar$lpar"
+targetdenyobjectstring+="CI"
+targetdenyobjectstring+="$rpar$lpar"
+targetdenyobjectstring+="F"
+targetdenyobjectstring+="$rpar$quote"
+targetgrantobjectstring="$quote$grantuser$d2$lpar"
+targetgrantobjectstring+="OI"
+targetgrantobjectstring+="$rpar$lpar"
+targetgrantobjectstring+="CI"
+targetgrantobjectstring+="$rpar$lpar"
+targetgrantobjectstring+="F"
+targetgrantobjectstring+="$rpar$quote"
+denyuserstring="$quote$grantuser$d2$lpar"
+denyuserstring+="RA,WA,X,F"
+denyuserstring+="$rpar$quote"
+grantuserstring="$quote$denyuser$d2$lpar"
+grantuserstring+="RA,WA,X,F"
+grantuserstring+="$rpar$quote"
 # Taking owner ship of the file/directory
 ps1="start /REALTIME takeown.exe /D Y /A /R /F $line*"
 # Giving Full permission to grantuser

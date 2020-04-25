@@ -48,15 +48,16 @@ ps3="start /REALTIME icacls.exe /inheritance:r $dirstring /GRANT $targetgrantobj
 # Revoking other access
 ps4="start /REALTIME icacls.exe $dirstring /DENY $denyuserstring /T"
 ps5="start /REALTIME icacls.exe /inheritance:r ' $dirstring ' /DENY ' $targetdenyobjectstring ' /T"
-# Execute job
-$ps1;
-$ps2;
-$ps3;
-$ps4;
-$ps5;
-echo $doitffs >>Commandstorun.log;
+# Write commands into log file.
+echo $ps1 >>Commandstorun.log;
+echo $ps2 >>Commandstorun.log;
+echo $ps3 >>Commandstorun.log;
+echo $ps4 >>Commandstorun.log;
+echo $ps5 >>Commandstorun.log;
 done <"$file"
+# Display commands.
 cat Commandstorun.log;
+# Ask for confirm to run the script
 read -p 'If this looks of you may want to execute now? (Y)' choice
 case $choice in
  Y) sh Commandstorun.log && echo 'I hope it was not too hard ;o)';

@@ -16,7 +16,7 @@ grantuser="Administrator"
 rm $file;
 rm Commandstorun.log;
 # Listing files and folders in directory and storing into file
-ls >$file;
+ls >$directory;
 # Reading File begins.
 while IFS= read -r line
 do

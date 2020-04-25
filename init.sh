@@ -11,7 +11,7 @@
 #  CONFIG  #
 ############
 file="list.txt"
-directory="C:\\USERS\\Administrator"
+directory="C:\\USERS\\Administrator\\"
 denyuser="ADMIN"
 grantuser="Administrator"
 ############

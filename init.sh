@@ -35,16 +35,16 @@ fi
 command="powershell Invoke-Expression start /REALTIME takeown.exe /D Y /A /R /F $line*";
 echo $command >>Commandstorun.log;
 # Giving Full permission to grantuser
-command="powershell Invoke-Expression start /REALTIME icacls.exe $directory$line /GRANT $grantuser':(RA,WA,X,F)' /T" ;
+command="powershell Invoke-Expression start /REALTIME icacls.exe $directory$line /GRANT $grantuser':\(\'RA,WA,X,F'\)\' /T" ;
 echo $command >>Commandstorun.log;
 # Make objects inherit.
-command="powershell Invoke-Expression start /REALTIME icacls.exe /inheritance:r $directory$line /GRANT "$grantuser:(OI)(CI)(F)" /T" ;
+command="powershell Invoke-Expression start /REALTIME icacls.exe /inheritance:r $directory$line /GRANT "$grantuser:\(\OI\)\\(\CI\)\\(\F\)\" /T" ;
 echo $command >>Commandstorun.log;
 # Denying all permission to denyuser
 command="powershell Invoke-Expression start /REALTIME icacls.exe $directory$line /DENY $denyuser':(RA,WA,X,F)' /T" ;
 echo $command >>Commandstorun.log;
 # Make objects inherit
-command="powershell Invoke-Expression start /REALTIME icacls.exe /inheritance:r $directory$line /DENY "$denyuser:(OI)(CI)(F)" /T" ;
+command="powershell Invoke-Expression start /REALTIME icacls.exe /inheritance:r $directory$line /DENY "$denyuser:\(\OI\)\\(\CI\)\\(\F\)\" /T" ;
 echo $command >>Commandstorun.log;
 done <"$file"
 cat Commandstorun.log;

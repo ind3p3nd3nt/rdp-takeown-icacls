@@ -38,13 +38,13 @@ echo $command >>Commandstorun.log;
 command="powershell Invoke-Expression start /REALTIME icacls.exe $directory$line /GRANT $grantuser':(RA,WA,X,F)' /T" ;
 echo $command >>Commandstorun.log;
 # Make objects inherit.
-command="powershell Invoke-Expression start /REALTIME icacls.exe /inheritance:r $directory$line /GRANT $grantuser:'(OI)(CI)(F)' /T" ;
+command="powershell Invoke-Expression start /REALTIME icacls.exe /inheritance:r $directory$line /GRANT "$grantuser:(OI)(CI)(F)" /T" ;
 echo $command >>Commandstorun.log;
 # Denying all permission to denyuser
 command="powershell Invoke-Expression start /REALTIME icacls.exe $directory$line /DENY $denyuser':(RA,WA,X,F)' /T" ;
 echo $command >>Commandstorun.log;
 # Make objects inherit
-command="powershell Invoke-Expression start /REALTIME icacls.exe /inheritance:r $directory$line /DENY $denyuser':(OI)(CI)(F)' /T" ;
+command="powershell Invoke-Expression start /REALTIME icacls.exe /inheritance:r $directory$line /DENY "$denyuser:(OI)(CI)(F)" /T" ;
 echo $command >>Commandstorun.log;
 done <"$file"
 cat Commandstorun.log;

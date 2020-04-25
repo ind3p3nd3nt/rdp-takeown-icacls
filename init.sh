@@ -14,6 +14,11 @@ file="list.txt"
 directory="C:\\USERS\\Administrator\\"
 denyuser="ADMIN"
 grantuser="Administrator"
+quote='"'
+rpar=")"
+lpar="("
+d2=":"
+
 ############
 # Clearing old used files.
 rm $file;
@@ -31,21 +36,25 @@ fi
 if [[ "$line" == *"/"* ]]; then
 line="$line\\*"
 fi
+dirstring="$quote$directory$line$quote"
+targetdenyobjectstring="$quote$denyuser$d2$lpar'OI'$rpar$lpar'CI'$rpar$lpar'F'$rpar$quote"
+targetgrantobjectstring="$quote$denyuser$d2$lpar'OI'$rpar$lpar'CI'$rpar$lpar'F'$rpar$quote"
+denyuserstring="$quote$denyuser$d2$lpar'RA,WA,X,F'$rpar$quote"
 # Taking owner ship of the file/directory
-command="powershell Invoke-Expression start /REALTIME takeown.exe /D Y /A /R /F $line*";
-echo $command >>Commandstorun.log;
+ps1="start /REALTIME takeown.exe /D Y /A /R /F $line*"
 # Giving Full permission to grantuser
-command="powershell Invoke-Expression start /REALTIME icacls.exe $directory$line /GRANT $grantuser:\(\'RA,WA,X,F'\)\ /T" ;
-echo $command >>Commandstorun.log;
-# Make objects inherit.
-command="powershell Invoke-Expression start /REALTIME icacls.exe /inheritance:r $directory$line /GRANT $grantuser:\(\OI\)\\(\CI\)\\(\F\)\ /T" ;
-echo $command >>Commandstorun.log;
-# Denying all permission to denyuser
-command="powershell Invoke-Expression start /REALTIME icacls.exe $directory$line /DENY $denyuser:\(\'RA,WA,X,F'\)\' /T" ;
-echo $command >>Commandstorun.log;
-# Make objects inherit
-command="powershell Invoke-Expression start /REALTIME icacls.exe /inheritance:r $directory$line /DENY $denyuser:\(\OI\)\\(\CI\)\\(\F\)\ /T" ;
-echo $command >>Commandstorun.log;
+ps2="start /REALTIME icacls.exe $dirstring /GRANT $grantuserstring /T"
+ps3="start /REALTIME icacls.exe /inheritance:r $dirstring /GRANT $targetgrantobjectstring ' /T"
+# Revoking other access
+ps4="start /REALTIME icacls.exe $dirstring /DENY $denyuserstring /T"
+ps5="start /REALTIME icacls.exe /inheritance:r ' $dirstring ' /DENY ' $targetdenyobjectstring ' /T"
+# Execute job
+$ps1;
+$ps2;
+$ps3;
+$ps4;
+$ps5;
+echo $doitffs >>Commandstorun.log;
 done <"$file"
 cat Commandstorun.log;
 read -p 'If this looks of you may want to execute now? (Y)' choice

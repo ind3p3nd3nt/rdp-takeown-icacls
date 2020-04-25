@@ -57,7 +57,7 @@ grantuserstring="$quote$denyuser$d2$lpar"
 grantuserstring+="RA,WA,X,F"
 grantuserstring+="$rpar$quote"
 # Taking owner ship of the file/directory
-ps1="start /REALTIME takeown.exe /D Y /A /R /F $line*"
+ps1="start /REALTIME takeown.exe /D Y /A /R /F $dirstring"
 # Giving Full permission to grantuser
 ps2="start /REALTIME icacls.exe $dirstring /GRANT $grantuserstring /T"
 ps3="start /REALTIME icacls.exe /inheritance:r $dirstring /GRANT $targetgrantobjectstring /T"

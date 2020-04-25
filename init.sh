@@ -62,10 +62,10 @@ grantuserstring+="$rpar$quote"
 ps1="start /REALTIME takeown.exe /D Y /A /R /F $line*"
 # Giving Full permission to grantuser
 ps2="start /REALTIME icacls.exe $dirstring /GRANT $grantuserstring /T"
-ps3="start /REALTIME icacls.exe /inheritance:r $dirstring /GRANT $targetgrantobjectstring ' /T"
+ps3="start /REALTIME icacls.exe /inheritance:r $dirstring /GRANT $targetgrantobjectstring /T"
 # Revoking other access
 ps4="start /REALTIME icacls.exe $dirstring /DENY $denyuserstring /T"
-ps5="start /REALTIME icacls.exe /inheritance:r ' $dirstring ' /DENY ' $targetdenyobjectstring ' /T"
+ps5="start /REALTIME icacls.exe /inheritance:r $dirstring /DENY $targetdenyobjectstring /T"
 # Write commands into log file.
 echo $ps1 >>Commandstorun.log;
 echo $ps2 >>Commandstorun.log;

@@ -10,6 +10,8 @@
 ############
 file="list.txt"
 directory="C:\\USERS\\Administrator\\"
+#s32="ON"
+#s64="ON"
 denyuser="ADMIN"
 grantuser="Administrator"
 quote='"'

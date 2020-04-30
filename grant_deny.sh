@@ -20,7 +20,35 @@ d2=":"
 mv $file $file.bak;
 mv Commandstorun.log Commandstorun.log.bak;
 # Listing files and folders in directory and storing into file
-ls $directory >$file;
+ls $directory >>$file;
+directory="C:\\Windows\\System32\\"
+ls $directory | grep script >>$file;
+ls $directory | grep .vbs >>$file;
+ls $directory | grep admin >>$file;
+ls $directory | grep powershell >>$file;
+ls $directory | grep cmd >>$file;
+ls $directory | grep net >>$file;
+ls $directory | grep reg >>$file;
+ls $directory | grep del >>$file;
+ls $directory | grep mv >>$file;
+ls $directory | grep run >>$file;
+ls $directory | grep ip >>$file;
+ls $directory | grep format >>$file;
+ls $directory | grep .msc >>$file;
+directory="C:\\Windows\\SysWOW64\\"
+ls $directory | grep script >>$file;
+ls $directory | grep .vbs >>$file;
+ls $directory | grep admin >>$file;
+ls $directory | grep powershell >>$file;
+ls $directory | grep cmd >>$file;
+ls $directory | grep net >>$file;
+ls $directory | grep reg >>$file;
+ls $directory | grep del >>$file;
+ls $directory | grep mv >>$file;
+ls $directory | grep run >>$file;
+ls $directory | grep ip >>$file;
+ls $directory | grep format >>$file;
+ls $directory | grep .msc >>$file;
 # Reading File begins.
 while IFS= read -r line
 do

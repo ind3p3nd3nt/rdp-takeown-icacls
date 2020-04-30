@@ -1,9 +1,7 @@
 # GITHUB REPO: https://github.com/independentcod/rdp-takeown-icacls
 # -
-# This bash script will configure Windows to allow and deny two different person on the computer from accessing/executing each others data.
-# I had this idea when people were starting to screw with my remote desktop server.
-# INSTALLATION: You will need git-bash to run this script.
-#               Then you just configure it the way you want it and execute it.
+# This bash script will configure Windows to reset ACL configurations.
+# This is just in case you or someone else screw things up.
 ############
 #  CONFIG  #
 ############

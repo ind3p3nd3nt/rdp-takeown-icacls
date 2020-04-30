@@ -16,9 +16,9 @@ rpar=")"
 lpar="("
 d2=":"
 ############
-# Clearing old used files.
-rm $file;
-rm Commandstorun.log;
+# Backing up old files.
+mv $file $file.bak;
+mv Commandstorun.log Commandstorun.log.bak;
 # Listing files and folders in directory and storing into file
 ls $directory >$file;
 # Reading File begins.

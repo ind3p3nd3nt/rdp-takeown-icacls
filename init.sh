@@ -1,7 +1,7 @@
 # GITHUB REPO: https://github.com/independentcod/rdp-takeown-icacls
 # -
 # This bash script will configure Windows to allow and deny two different person on the computer from accessing/executing each others data.
-# I had this idead when people were starting to screw with my remote desktop server.
+# I had this idea when people were starting to screw with my remote desktop server.
 # INSTALLATION: You will need git-bash to run this script.
 #               Then you just configure it the way you want it and execute it.
 ############
@@ -74,7 +74,7 @@ done <"$file"
 # Display commands.
 cat Commandstorun.log;
 # Ask for confirm to run the script
-read -p 'If this looks of you may want to execute now? (Y)' choice
+read -p 'If this looks OK, you may want to execute now? (Y)' choice
 case $choice in
  Y) sh Commandstorun.log && echo 'I hope it was not too hard ;o)';
 esac

@@ -21,7 +21,9 @@ d2=":"
 mv $file $file.bak;
 mv Commandstorun.log Commandstorun.log.bak;
 # Listing files and folders in directory and storing into file
-ls $directory >>$file;
+ls $directory >$file;
+#s32="ON"
+if [[ $s32 = ON ]]; then
 directory="C:\\Windows\\System32\\"
 ls $directory | grep script >>$file;
 ls $directory | grep .vbs >>$file;
@@ -36,6 +38,9 @@ ls $directory | grep run >>$file;
 ls $directory | grep ip >>$file;
 ls $directory | grep format >>$file;
 ls $directory | grep .msc >>$file;
+fi
+#s64="ON"
+if [[ $s64 = ON ]]; then
 directory="C:\\Windows\\SysWOW64\\"
 ls $directory | grep script >>$file;
 ls $directory | grep .vbs >>$file;
@@ -50,6 +55,8 @@ ls $directory | grep run >>$file;
 ls $directory | grep ip >>$file;
 ls $directory | grep format >>$file;
 ls $directory | grep .msc >>$file;
+fi
+
 # Reading File begins.
 while IFS= read -r line
 do

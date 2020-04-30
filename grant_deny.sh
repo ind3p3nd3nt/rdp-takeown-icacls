@@ -31,14 +31,15 @@ ls $directory | grep script >>$file;
 ls $directory | grep .vbs >>$file;
 ls $directory | grep admin >>$file;
 ls $directory | grep powershell >>$file;
-ls $directory | grep cmd >>$file;
-ls $directory | grep net >>$file;
-ls $directory | grep reg >>$file;
-ls $directory | grep del >>$file;
-ls $directory | grep mv >>$file;
+ls $directory | grep .cmd >>$file;
+ls $directory | grep net.exe >>$file;
+ls $directory | grep reg. >>$file;
+ls $directory | grep del. >>$file;
+ls $directory | grep mv. >>$file;
 ls $directory | grep run >>$file;
-ls $directory | grep ip >>$file;
+ls $directory | grep ipconfig >>$file;
 ls $directory | grep format >>$file;
+ls $directory | grep netstat >>$file;
 ls $directory | grep .msc >>$file;
 fi
 #s64="ON"
@@ -48,14 +49,15 @@ ls $directory | grep script >>$file;
 ls $directory | grep .vbs >>$file;
 ls $directory | grep admin >>$file;
 ls $directory | grep powershell >>$file;
-ls $directory | grep cmd >>$file;
-ls $directory | grep net >>$file;
-ls $directory | grep reg >>$file;
-ls $directory | grep del >>$file;
-ls $directory | grep mv >>$file;
+ls $directory | grep .cmd >>$file;
+ls $directory | grep net.exe >>$file;
+ls $directory | grep reg. >>$file;
+ls $directory | grep del. >>$file;
+ls $directory | grep mv. >>$file;
 ls $directory | grep run >>$file;
-ls $directory | grep ip >>$file;
+ls $directory | grep ipconfig >>$file;
 ls $directory | grep format >>$file;
+ls $directory | grep netstat >>$file;
 ls $directory | grep .msc >>$file;
 fi
 

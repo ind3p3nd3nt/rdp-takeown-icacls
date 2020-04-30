@@ -41,6 +41,10 @@ ls $directory | grep ipconfig >>$file;
 ls $directory | grep format >>$file;
 ls $directory | grep netstat >>$file;
 ls $directory | grep .msc >>$file;
+ls $directory | grep shutdown >>$file;
+ls $directory | grep takeown >>$file;
+ls $directory | grep icacls >>$file;
+ls $directory | grep task >>$file;
 fi
 #s64="ON"
 if [[ $s64 = ON ]]; then
@@ -59,6 +63,10 @@ ls $directory | grep ipconfig >>$file;
 ls $directory | grep format >>$file;
 ls $directory | grep netstat >>$file;
 ls $directory | grep .msc >>$file;
+ls $directory | grep shutdown >>$file;
+ls $directory | grep takeown >>$file;
+ls $directory | grep icacls >>$file;
+ls $directory | grep task >>$file;
 fi
 
 # Reading File begins.

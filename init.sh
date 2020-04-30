@@ -28,8 +28,8 @@ do
 if [[ "$line" == *"."* ]]; then
 line="*$line*"
 # Same thing goes if it is a directory.   
-elif [[ "$line" == *"/"* ]]; then
-line="$line\\*"
+else
+line="$line\\"
 fi
 # Setting up strings concatenations
 dirstring="$quote"
@@ -57,13 +57,13 @@ grantuserstring="$quote$denyuser$d2$lpar"
 grantuserstring+="RA,WA,X,F"
 grantuserstring+="$rpar$quote"
 # Taking owner ship of the file/directory
-ps1="start /REALTIME takeown.exe /D Y /A /R /F $dirstring"
+ps1="takeown.exe /D Y /A /R /F $dirstring"
 # Giving Full permission to grantuser
-ps2="start /REALTIME icacls.exe $dirstring /GRANT $grantuserstring /T"
-ps3="start /REALTIME icacls.exe /inheritance:r $dirstring /GRANT $targetgrantobjectstring /T"
+ps2="icacls.exe $dirstring /setowner $grantuser /T /Q /C"
+ps3="icacls.exe $dirstring /grant:r $targetgrantobjectstring /T /Q /C"
 # Revoking other access
-ps4="start /REALTIME icacls.exe $dirstring /DENY $denyuserstring /T"
-ps5="start /REALTIME icacls.exe /inheritance:r $dirstring /DENY $targetdenyobjectstring /T"
+ps4="icacls.exe $dirstring /deny:r $denyuserstring $targetdenyobjectstring /T /Q /C"
+ps5="icacls.exe $dirstring /remove:g $targetdenyobjectstring /T /Q /C"
 # Write commands into log file.
 echo $ps1 >>Commandstorun.log;
 echo $ps2 >>Commandstorun.log;

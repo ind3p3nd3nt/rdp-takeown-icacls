@@ -13,8 +13,6 @@
 ############
 directory="C:\\USERS\\indep\\"
 file="list.txt"
-s32="ON"
-s64="ON"
 denyuser="ADMIN"
 grantuser="indep"
 quote='"'
@@ -45,24 +43,18 @@ grantuserstring+="$rpar$quote"
 
 function chk()
 {
-# If line contains a file, use proper formatting.
-if [[ "$2" == *"."* ]]; then
-line="$1"
-line+="*$2*"
-line+="$quote"
-# Same thing goes if it is a directory.   
-else
-line="$l"
-line+="$quote"
-fi
+var="$quote"
+var+="$1"
+var+="$2*"
+var+="$quote"
 # Taking owner ship of the file/directory
-ps1="takeown.exe /D Y /A /R /F $1"
+ps1="takeown.exe /D Y /A /R /F $var"
 # Giving Full permission to grantuser
-ps2="icacls.exe $1$2 /setowner $grantuser /T /Q /C"
-ps3="icacls.exe $1$2 /grant /inheritancelevel:r $targetgrantobjectstring /T /Q /C"
+ps2="icacls.exe $var /setowner $grantuser /T /Q /C"
+ps3="icacls.exe $var /grant /inheritancelevel:r $targetgrantobjectstring /T /Q /C"
 # Revoking other access
-ps4="icacls.exe $1$2 /deny $targetdenyobjectstring /T /Q /C"
-ps5="icacls.exe $1$2 /remove:g $targetdenyobjectstring /T /Q /C"
+ps4="icacls.exe $var /deny $targetdenyobjectstring /T /Q /C"
+ps5="icacls.exe $var /remove:g $targetdenyobjectstring /T /Q /C"
 # Write commands into log file.
 echo $ps1 >>Commandstorun.log;
 echo $ps2 >>Commandstorun.log;
@@ -75,19 +67,13 @@ echo $ps5 >>Commandstorun.log;
 mv $file $file.bak;
 mv Commandstorun.log Commandstorun.log.bak;
 # Listing files and folders in directory and storing into file
-dirstring="$quote"
-dirstring+="$directory"
-dirstring+="$line"
 ls $directory >>$file;
 # Reading File begins.
 while IFS= read -r line
 do
-chk $dirstring $line
+chk $directory $line
 done <"$file"
 directory="C:\\Windows\\System32\\"
-dirstring="$quote"
-dirstring+="$directory"
-dirstring+="$line"
 ls $directory | grep script >>$file;
 ls $directory | grep .vbs >>$file;
 ls $directory | grep admin >>$file;
@@ -108,13 +94,10 @@ ls $directory | grep icacls >>$file;
 ls $directory | grep task >>$file;
 # Reading File begins.
 while IFS= read -r line
-do
-chk $dirstring $line
+do 
+chk $directory $line
 done <"$file"
 directory="C:\\Windows\\SysWOW64\\"
-dirstring="$quote"
-dirstring+="$directory"
-dirstring+="$line"
 ls $directory | grep script >>$file;
 ls $directory | grep .vbs >>$file;
 ls $directory | grep admin >>$file;
@@ -136,7 +119,7 @@ ls $directory | grep task >>$file;
 # Reading File begins.
 while IFS= read -r line
 do
-chk $dirstring $line
+chk $directory $line
 done <"$file"
 # Display commands.
 cat Commandstorun.log;

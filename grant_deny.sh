@@ -48,10 +48,10 @@ function chk()
 # If line contains a file, use proper formatting.
 if [[ "$2" == *"."* ]]; then
 line="$1"
-line+="*$2*"
+line+="*$2*$quote"
 # Same thing goes if it is a directory.   
 else
-line="$l"
+line="$l$quote"
 fi
 # Taking owner ship of the file/directory
 ps1="takeown.exe /D Y /A /R /F $1"

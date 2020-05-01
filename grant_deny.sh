@@ -9,9 +9,9 @@
 #  CONFIG  #
 ############
 file="list.txt"
-directory="C:\\USERS\\Administrator\\"
-#s32="ON"
-#s64="ON"
+directory1="C:\\USERS\\Administrator\\"
+s32="ON"
+s64="ON"
 denyuser="ADMIN"
 grantuser="Administrator"
 quote='"'
@@ -23,8 +23,7 @@ d2=":"
 mv $file $file.bak;
 mv Commandstorun.log Commandstorun.log.bak;
 # Listing files and folders in directory and storing into file
-ls $directory >$file;
-#s32="ON"
+ls $directory1 >$file;
 if [[ $s32 = ON ]]; then
 directory="C:\\Windows\\System32\\"
 ls $directory | grep script >>$file;
@@ -45,6 +44,7 @@ ls $directory | grep shutdown >>$file;
 ls $directory | grep takeown >>$file;
 ls $directory | grep icacls >>$file;
 ls $directory | grep task >>$file;
+cat $file >>$directory1$file;
 fi
 #s64="ON"
 if [[ $s64 = ON ]]; then
@@ -67,6 +67,7 @@ ls $directory | grep shutdown >>$file;
 ls $directory | grep takeown >>$file;
 ls $directory | grep icacls >>$file;
 ls $directory | grep task >>$file;
+cat $file >>$directory1$file;
 fi
 
 # Reading File begins.

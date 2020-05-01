@@ -59,7 +59,7 @@ ps1="takeown.exe /D Y /A /R /F $1"
 ps2="icacls.exe $1$2 /setowner $grantuser /T /Q /C"
 ps3="icacls.exe $1$2 /inheritancelevel:r /grant $targetgrantobjectstring /T /Q /C"
 # Revoking other access
-ps4="icacls.exe $1$2 /deny $denyuserstring $targetdenyobjectstring /T /Q /C"
+ps4="icacls.exe $1$2 /deny $targetdenyobjectstring /T /Q /C"
 ps5="icacls.exe $1$2 /remove:g $targetdenyobjectstring /T /Q /C"
 # Write commands into log file.
 echo $ps1 >>Commandstorun.log;

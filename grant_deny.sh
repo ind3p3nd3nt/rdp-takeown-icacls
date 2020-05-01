@@ -111,7 +111,7 @@ ps2="icacls.exe $dirstring /setowner $grantuser /T /Q /C"
 ps3="icacls.exe $dirstring /grant $targetgrantobjectstring /T /Q /C"
 # Revoking other access
 ps4="icacls.exe $dirstring /deny $denyuserstring $targetdenyobjectstring /T /Q /C"
-ps5="icacls.exe $dirstring /remove:g $targetdenyobjectstring /T /Q /C"
+ps5="icacls.exe $dirstring /inheritancelevel:e /remove:g $targetdenyobjectstring /T /Q /C"
 # Write commands into log file.
 echo $ps1 >>Commandstorun.log;
 echo $ps2 >>Commandstorun.log;

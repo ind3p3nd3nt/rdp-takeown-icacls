@@ -19,7 +19,7 @@ quote='"'
 rpar=")"
 lpar="("
 d2=":"
-function setstr()
+function setstr
 {
 # Setting up strings concatenations
 tgtobjstr="$quote$1$d2$lpar"
@@ -31,7 +31,7 @@ tgtobjstr+="$rpar"
 tgtobjstr+="F"
 tgtobjstr+="$quote"
 }
-function  lstaccfiles()
+function  lstaccfiles
 {
 ls $directory | grep script >>$1;
 ls $directory | grep .vbs >>$1;
@@ -52,7 +52,7 @@ ls $directory | grep takeown >>$1;
 ls $directory | grep icacls >>$1;
 ls $directory | grep task >>$1;
 }
-function chk()
+function chk
 {
 var="$quote"
 var+="$1"

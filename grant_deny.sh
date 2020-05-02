@@ -65,10 +65,9 @@ function chk()
 var="$quote"
 for n in "$@"
 do
-if [[ $n = *"."* ]]
-then
+if [[ $n = *"."* ]]; then
 var+="$n"
-elif [[ $n = *" "* ]]
+elif [[ $n = *" "* ]]; then
 var+="$n "
 else
 var+="$n\\"

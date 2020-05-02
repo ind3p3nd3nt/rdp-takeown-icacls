@@ -72,7 +72,6 @@ var+="$n "
 else
 var+="$n\\"
 fi
-var+="$n "
 done
 var+="$quote"
 echo "Taking owner ship of the file/directory $var";

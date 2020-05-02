@@ -63,7 +63,7 @@ ls $directory | grep task >>$1;
 function chk()
 {
 var="$quote"
-for n in {$}
+for n in "$@"
 do
 var+="$n"
 done

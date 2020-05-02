@@ -36,7 +36,7 @@ function rdfile()
 echo Reading File: $file begin.
 while IFS= read -r line
 do
-chk $directory$line
+chk $directory $line
 done <"$file"
 }
 function  lstaccfiles()

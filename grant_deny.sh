@@ -36,7 +36,7 @@ function rdfile()
 echo Reading File: $file begin.
 while IFS= read -r line
 do
-chk $directory $line
+chk $directory$line
 done <"$file"
 }
 function  lstaccfiles()
@@ -63,8 +63,10 @@ ls $directory | grep task >>$1;
 function chk()
 {
 var="$quote"
-var+="$1"
-var+="$2"
+for n in $
+do
+var+="$n"
+done
 var+="$quote"
 echo "Taking owner ship of the file/directory $var";
 ps1="powershell Invoke-Expression \"takeown.exe /D Y /A /R /F' $var\""

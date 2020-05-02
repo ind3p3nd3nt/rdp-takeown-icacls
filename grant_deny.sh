@@ -69,6 +69,8 @@ if [[ $n = *"."* ]]; then
 var+="$n"
 elif [[ $n = *" "* ]]; then
 var+="$n "
+elif [[ $n = *"/"* ]]; then
+var+="$n\\"
 fi
 done
 var+="$quote"

@@ -19,7 +19,7 @@ quote='"'
 rpar=")"
 lpar="("
 d2=":"
-function setstr
+function setstr()
 {
 # Setting up strings concatenations
 tgtobjstr="$quote$1$d2$lpar"
@@ -30,8 +30,9 @@ tgtobjstr+="CI"
 tgtobjstr+="$rpar"
 tgtobjstr+="F"
 tgtobjstr+="$quote"
+return $tgtobjstr;
 }
-function  lstaccfiles
+function  lstaccfiles()
 {
 ls $directory | grep script >>$1;
 ls $directory | grep .vbs >>$1;
@@ -52,7 +53,7 @@ ls $directory | grep takeown >>$1;
 ls $directory | grep icacls >>$1;
 ls $directory | grep task >>$1;
 }
-function chk
+function chk()
 {
 var="$quote"
 var+="$1"
@@ -64,12 +65,14 @@ ps1="takeown.exe /D Y /A /R /F $var"
 ps2="icacls.exe $var /setowner $grantuser /T /Q /C"
 ps3="icacls.exe $var /remove:g $(setstr $denyuser) /T /Q /C"
 # Granting grantuser to container and denying denyuser with inheritance enabled.
-ps4="icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser)  /deny:r $(setstr $denyuser)  /T /Q /C"
+ps4="icacls.exe $var  /grant:r $(setstr $grantuser)  /deny:r $(setstr $denyuser)  /T /Q /C"
+ps5="icacls.exe $var  /inheritance:r"
 # Write commands into log file.
 echo $ps1 >>Commandstorun.log;
 echo $ps2 >>Commandstorun.log;
 echo $ps3 >>Commandstorun.log;
 echo $ps4 >>Commandstorun.log;
+echo $ps5 >>Commandstorun.log;
 }
 function rdfile()
 {

@@ -74,10 +74,10 @@ var+="$quote"
 ps1="takeown.exe /D Y /A /R /F $var"
 echo "$ps1";
 echo "$ps1" >>Cmds.ps1;
-ps2="icacls.exe $var /setowner $grantuser /T /Q /C>>ThingsDone.log"
+ps2="icacls.exe $var /setowner $grantuser /T /Q /C"
 echo "$ps2";
 echo "$ps2" >>Cmds.ps1;
-ps3="icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny $(setstr $denyuser) /T /Q /C>>ThingsDone.log"
+ps3="icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny $(setstr $denyuser) /T /Q /C"
 echo "$ps3";
 echo "$ps3" >>Cmds.ps1;
 done

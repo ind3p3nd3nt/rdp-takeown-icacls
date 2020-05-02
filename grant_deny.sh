@@ -70,7 +70,6 @@ var+="*$n*"
 elif [[ $n = *" "* ]]; then
 var+="$n "
 fi
-done
 var+="$quote"
 echo "Taking owner ship of the file/directory $var";
 ps1="powershell Invoke-Expression \"takeown.exe /D Y /A /R /F' $var\""
@@ -81,6 +80,7 @@ eval $ps2;
 echo "Giving Full permission to: $grantuser and denying $denyuser in: $var with container inheritance"
 ps3="powershell Invoke-Expression \"icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny $(setstr $denyuser) /T /Q /C\""
 eval $ps3;
+done
 }
 echo "Listing files and folders in $directory"
 ls $directory >>$file;

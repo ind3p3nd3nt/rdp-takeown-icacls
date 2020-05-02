@@ -72,7 +72,7 @@ var+="$n "
 fi
 var+="$quote"
 echo "Taking owner ship of the file/directory $var";
-ps1="powershell Invoke-Expression $quotetakeown.exe /D Y /A /R /F' $va$quote"
+ps1="powershell Invoke-Expression $quotetakeown.exe /D Y /A /R /F $var$quote"
 eval $ps1;
 echo "Setting ownership to $grantuser on $var";
 ps2="powershell Invoke-Expression $quoteicacls.exe $var /setowner $grantuser /T /Q /C$quote"

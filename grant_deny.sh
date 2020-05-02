@@ -73,13 +73,13 @@ fi
 var+="$quote"
 echo "Taking owner ship of the file/directory $var";
 ps1="takeown.exe /D Y /A /R /F $var>>ThingsDone.log"
-eval $ps1;
+$ps1;
 echo "Setting ownership to $grantuser on $var";
 ps2="icacls.exe $var /setowner $grantuser /T /Q /C>>ThingsDone.log"
-eval $ps2;
+$ps2;
 echo "Giving Full permission to: $grantuser and denying $denyuser in: $var with container inheritance"
 ps3="icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny $(setstr $denyuser) /T /Q /C>>ThingsDone.log"
-eval $ps3;
+$ps3;
 done
 }
 echo "Listing files and folders in $directory"

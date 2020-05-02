@@ -65,14 +65,16 @@ ps1="takeown.exe /D Y /A /R /F $var"
 ps2="icacls.exe $var /setowner $grantuser /T /Q /C"
 ps3="icacls.exe $var /remove:g $(setstr $denyuser) /T /Q /C"
 # Granting grantuser to container and denying denyuser with inheritance enabled.
-ps4="icacls.exe $var  /grant:r $(setstr $grantuser)  /deny:r $(setstr $denyuser)  /T /Q /C"
-ps5="icacls.exe $var  /inheritance:r"
+ps4="icacls.exe $var /grant:r $(setstr $grantuser) /T /Q /C"
+ps5="icacls.exe $var /deny:r $(setstr $denyuser)  /T /Q /C"
+ps6="icacls.exe $var /inheritance:r /T /Q /C"
 # Write commands into log file.
-echo $ps1 >>Commandstorun.log;
-echo $ps2 >>Commandstorun.log;
-echo $ps3 >>Commandstorun.log;
-echo $ps4 >>Commandstorun.log;
-echo $ps5 >>Commandstorun.log;
+echo $ps1 >>RunCommands.ps1;
+echo $ps2 >>RunCommands.ps1;
+echo $ps3 >>RunCommands.ps1;
+echo $ps4 >>RunCommands.ps1;
+echo $ps5 >>RunCommands.ps1;
+echo $ps6 >>RunCommands.ps1;
 }
 function rdfile()
 {
@@ -85,7 +87,7 @@ done <"$file"
 ############
 # Backing up old files.
 mv $file $file.bak;
-mv Commandstorun.log Commandstorun.log.bak;
+mv RunCommands.ps1 RunCommands.ps1.bak;
 # Listing files and folders in directory and storing into file
 directory="C:\\Windows\\System32\\"
 ls $directory >>$file;
@@ -94,6 +96,5 @@ directory="C:\\Windows\\SysWOW64\\"
 lstaccfiles $file
 rdfile $file
 # Display commands.
-cat Commandstorun.log;
-# Ask for confirm to run the script
-read -p 'Now paste these commands into a powershell as administrator.' choice
+cat RunCommands.ps1;
+start /REALTIME powershell RunCommands.ps1

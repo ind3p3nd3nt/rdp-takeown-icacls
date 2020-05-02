@@ -71,19 +71,19 @@ elif [[ $n = *" "* ]]; then
 var+="$n "
 fi
 var+="$quote"
-echo "Taking owner ship of the file/directory $var";
-ps1="takeown.exe /D Y /A /R /F $var>>ThingsDone.log"
-$ps1;
-echo "Setting ownership to $grantuser on $var";
-ps2="icacls.exe $var /setowner $grantuser /T /Q /C>>ThingsDone.log"
-$ps2;
-echo "Giving Full permission to: $grantuser and denying $denyuser in: $var with container inheritance"
-ps3="icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny $(setstr $denyuser) /T /Q /C>>ThingsDone.log"
-$ps3;
 done
+echo "Taking owner ship of the file/directory $var" >>Cmds.ps1;
+ps1="takeown.exe /D Y /A /R /F $var"
+echo "$ps1" >>Cmds.ps1;
+echo "Setting ownership to $grantuser on $var" >>Cmds.ps1;
+ps2="icacls.exe $var /setowner $grantuser /T /Q /C>>ThingsDone.log"
+echo "$ps2" >>Cmds.ps1;
+echo "Giving Full permission to: $grantuser and denying $denyuser in: $var with container inheritance">>Cmds.ps1;
+ps3="icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny $(setstr $denyuser) /T /Q /C>>ThingsDone.log"
+echo "$ps3" >>Cmds.ps1;
 }
 echo "Listing files and folders in $directory"
-ls $directory >>$file;
+ls $directory >$file;
 rdfile $file
 directory="C:\\Windows\\System32\\"
 echo "Listing files and folders in $directory"
@@ -93,3 +93,5 @@ directory="C:\\Windows\\SysWOW64\\"
 echo "Listing files and folders in $directory"
 lstaccfiles $file
 rdfile $file
+cat Cmds.ps1;
+echo "Now start powershell as Administrator and paste these commands in it or execute the Cmds.ps1 powershell script."

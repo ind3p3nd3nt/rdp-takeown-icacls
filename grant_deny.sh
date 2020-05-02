@@ -65,7 +65,7 @@ function chk()
 var="$quote"
 for n in "$@"
 do
-var+="$n"
+var+="$n "
 done
 var+="$quote"
 echo "Taking owner ship of the file/directory $var";

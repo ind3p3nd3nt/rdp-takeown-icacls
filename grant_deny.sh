@@ -7,7 +7,6 @@
 # I had this idea when people were starting to screw with my remote desktop server.
 # INSTALLATION: You will need git-bash to run this script.
 #               Then you just configure it the way you want it and execute it.
-
 ############
 #  CONFIG  #
 ############
@@ -89,4 +88,4 @@ lstaccfiles $file
 rdfile $file
 # Display commands.
 cat RunCommands.ps1;
-start /REALTIME powershell RunCommands.ps1
+start /REALTIME powershell RunCommands.ps1;

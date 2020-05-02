@@ -30,7 +30,7 @@ tgtobjstr+="CI"
 tgtobjstr+="$rpar"
 tgtobjstr+="F"
 tgtobjstr+="$quote"
-return $tgtobjstr;
+echo $tgtobjstr;
 }
 function  lstaccfiles()
 {

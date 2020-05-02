@@ -72,13 +72,13 @@ var+="$n "
 fi
 var+="$quote"
 done
-echo "Taking owner ship of the file/directory $var" >>Cmds.ps1;
+echo echo "Taking owner ship of the file/directory $var" >>Cmds.ps1;
 ps1="takeown.exe /D Y /A /R /F $var"
 echo "$ps1" >>Cmds.ps1;
-echo "Setting ownership to $grantuser on $var" >>Cmds.ps1;
+echo echo "Setting ownership to $grantuser on $var" >>Cmds.ps1;
 ps2="icacls.exe $var /setowner $grantuser /T /Q /C>>ThingsDone.log"
 echo "$ps2" >>Cmds.ps1;
-echo "Giving Full permission to: $grantuser and denying $denyuser in: $var with container inheritance">>Cmds.ps1;
+echo echo "Giving Full permission to: $grantuser and denying $denyuser in: $var with container inheritance">>Cmds.ps1;
 ps3="icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny $(setstr $denyuser) /T /Q /C>>ThingsDone.log"
 echo "$ps3" >>Cmds.ps1;
 }

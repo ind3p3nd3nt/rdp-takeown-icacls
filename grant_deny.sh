@@ -32,6 +32,14 @@ tgtobjstr+="F"
 tgtobjstr+="$quote"
 echo $tgtobjstr;
 }
+function rdfile()
+{
+# Reading File begins.
+while IFS= read -r line
+do
+chk $directory $line
+done <"$file"
+}
 function  lstaccfiles()
 {
 ls $directory | grep script >>$1;
@@ -63,27 +71,11 @@ var+="$quote"
 ps1="takeown.exe /D Y /A /R /F $var"
 # Giving Full permission to grantuser
 ps2="icacls.exe $var /setowner $grantuser /T /Q /C"
-ps3="icacls.exe $var /remove:g $(setstr $denyuser) /T /Q /C"
-# Granting grantuser to container and denying denyuser with inheritance enabled.
-ps4="icacls.exe $var /grant:r $(setstr $grantuser) /T /Q /C"
-ps5="icacls.exe $var /deny:r $(setstr $denyuser)  /T /Q /C"
-ps6="icacls.exe $var /inheritance:r /T /Q /C"
+ps3="icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny:r $(setstr $denyuser) /T /Q /C"
 # Write commands into log file.
 echo $ps1 >>RunCommands.ps1;
 echo $ps2 >>RunCommands.ps1;
 echo $ps3 >>RunCommands.ps1;
-echo $ps4 >>RunCommands.ps1;
-echo $ps5 >>RunCommands.ps1;
-echo $ps6 >>RunCommands.ps1;
-}
-function rdfile()
-{
-# Reading File begins.
-while IFS= read -r line
-do
-chk $directory $line
-done <"$file"
-}
 ############
 # Backing up old files.
 mv $file $file.bak;

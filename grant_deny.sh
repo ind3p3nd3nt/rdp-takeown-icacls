@@ -62,7 +62,7 @@ ls $directory | grep task >>$1;
 }
 function chk()
 {
-var="$quote"
+var="$quote$directory"
 for n in "$@"
 do
 if [[ $n = *"."* ]]; then

@@ -66,11 +66,9 @@ var="$quote"
 for n in "$@"
 do
 if [[ $n = *"."* ]]; then
-var+="$n"
+var+="*$n*"
 elif [[ $n = *" "* ]]; then
 var+="$n "
-else
-var+="$n\\"
 fi
 done
 var+="$quote"

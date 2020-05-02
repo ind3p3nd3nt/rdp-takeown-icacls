@@ -72,13 +72,22 @@ var+="$n "
 fi
 var+="$quote"
 echo "Taking owner ship of the file/directory $var";
-ps1="powershell Invoke-Expression $quotetakeown.exe /D Y /A /R /F $var$quote"
+ps1="powershell Invoke-Expression "
+ps1+="$quote"
+ps1+="takeown.exe /D Y /A /R /F $var"
+ps1+="$quote"
 eval $ps1;
 echo "Setting ownership to $grantuser on $var";
-ps2="powershell Invoke-Expression $quoteicacls.exe $var /setowner $grantuser /T /Q /C$quote"
+ps2="powershell Invoke-Expression "
+ps2+="$quote"
+ps2+="icacls.exe $var /setowner $grantuser /T /Q /C"
+ps2+="$quote"
 eval $ps2;
 echo "Giving Full permission to: $grantuser and denying $denyuser in: $var with container inheritance"
-ps3="powershell Invoke-Expression $quoteicacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny $(setstr $denyuser) /T /Q /C$quote"
+ps3="powershell Invoke-Expression "
+ps3+="$quote"
+ps3+="icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny $(setstr $denyuser) /T /Q /C"
+ps3+="$quote"
 eval $ps3;
 done
 }

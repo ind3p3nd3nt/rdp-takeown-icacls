@@ -33,7 +33,7 @@ echo $tgtobjstr;
 }
 function rdfile()
 {
-# Reading File begins.
+echo Reading File: $file begin.
 while IFS= read -r line
 do
 chk $directory $line
@@ -66,27 +66,24 @@ var="$quote"
 var+="$1"
 var+="$2*"
 var+="$quote"
-# Taking owner ship of the file/directory
-ps1="takeown.exe /D Y /A /R /F $var"
-# Giving Full permission to grantuser
-ps2="icacls.exe $var /setowner $grantuser /T /Q /C"
-ps3="icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny $(setstr $denyuser) /T /Q /C"
-# Write commands into log file.
-echo $ps1 >>RunCommands.ps1;
-echo $ps2 >>RunCommands.ps1;
-echo $ps3 >>RunCommands.ps1;
-############
-# Backing up old files.
-mv $file $file.bak;
-mv RunCommands.ps1 RunCommands.ps1.bak;
-# Listing files and folders in directory and storing into file
-directory="C:\\Windows\\System32\\"
+echo "Taking owner ship of the file/directory $var";
+ps1="start /REALTIME takeown.exe /D Y /A /R /F $var"
+$(ps1);
+echo "Setting ownership to $grantuser on $var";
+ps2="start /REALTIME icacls.exe $var /setowner $grantuser /T /Q /C"
+$(ps2);
+echo "Giving Full permission to: $grantuser and denying $denyuser in: $var with container inheritance"
+ps3="start /REALTIME icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny $(setstr $denyuser) /T /Q /C"
+$(ps3);
+}
+echo "Listing files and folders in $directory"
 ls $directory >>$file;
 rdfile $file
-directory="C:\\Windows\\SysWOW64\\"
+directory="C:\\Windows\\System32\\"
+echo "Listing files and folders in $directory"
 lstaccfiles $file
 rdfile $file
-# Display commands.
-cat RunCommands.ps1;
-start /REALTIME powershell RunCommands.ps1;
-}
+directory="C:\\Windows\\SysWOW64\\"
+echo "Listing files and folders in $directory"
+lstaccfiles $file
+rdfile $file

@@ -70,7 +70,7 @@ var+="$quote"
 ps1="takeown.exe /D Y /A /R /F $var"
 # Giving Full permission to grantuser
 ps2="icacls.exe $var /setowner $grantuser /T /Q /C"
-ps3="icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny:r $(setstr $denyuser) /T /Q /C"
+ps3="icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny $(setstr $denyuser) /T /Q /C"
 # Write commands into log file.
 echo $ps1 >>RunCommands.ps1;
 echo $ps2 >>RunCommands.ps1;

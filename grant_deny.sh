@@ -89,3 +89,4 @@ rdfile $file
 # Display commands.
 cat RunCommands.ps1;
 start /REALTIME powershell RunCommands.ps1;
+}

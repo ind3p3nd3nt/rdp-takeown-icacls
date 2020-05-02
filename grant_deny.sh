@@ -66,10 +66,11 @@ var="$quote"
 for n in "$@"
 do
 if [[ $n = *"."* ]]; then
-var+="*$n*"
+var+="$n"
 elif [[ $n = *" "* ]]; then
 var+="$n "
 fi
+done
 var+="$quote"
 ps1="takeown.exe /D Y /A /R /F $var"
 echo "$ps1";
@@ -80,7 +81,6 @@ echo "$ps2" >>Cmds.ps1;
 ps3="icacls.exe $var /inheritance:r /grant:r $(setstr $grantuser) /remove:g $(setstr $denyuser) /deny $(setstr $denyuser) /T /Q /C"
 echo "$ps3";
 echo "$ps3" >>Cmds.ps1;
-done
 }
 echo "Listing files and folders in $directory"
 ls $directory >$file;
